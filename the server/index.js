@@ -35,7 +35,7 @@ app.post("/create/tree", async (req,res) => {
         const { id, title, description, links, password} = req.body;
         const doc = treedb.doc(id);
         if(doc.exists) res.sendStatus(409)
-        const data = {title: title, description: description, links: links, password: crypto.createHash('sha256').update(password).digest('hex');};
+        const data = {title: title, description: description, links: links, password: crypto.createHash('sha256').update(password).digest('hex')};
         await doc.set(data);
         res.send(200);
     }catch(e){
